@@ -486,7 +486,7 @@ def read_dat_discrete_data(fname, sf):
         Values of the data
     """
     n = np.fromfile(fname, dtype=np.uint8).reshape(-1, 8)
-    t = n[:, 0:4].copy().view(int) / sf
+    t = n[:, 0:4].view(np.uint32).astype(int) / sf
     v = n[:, 4:8].copy().view(np.float32)
 
     return t.squeeze(), v.squeeze()
